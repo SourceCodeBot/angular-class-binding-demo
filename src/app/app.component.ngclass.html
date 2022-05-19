@@ -1,0 +1,19 @@
+<div class="wrapper">
+  <div
+  [ngClass]="{
+    'left-side': align === 'left',
+    'right-side': align === 'right',
+    'top-side': align === 'top',
+    'bottom-side': align === 'bottom',
+    'center': align === 'center'
+  }"
+  class="item">
+  <div>
+    <button (click)="alignLeft()">left</button>
+    <button (click)="alignTop()">top</button>
+    <button (click)="alignCenter()">center</button>
+    <button (click)="alignRight()">right</button>
+    <button (click)="alignBottom()">buttom</button>
+  </div>
+</div>
+</div>

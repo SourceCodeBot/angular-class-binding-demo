@@ -1,0 +1,48 @@
+:host {
+  display: flex;
+  height: 100%;
+  width: 100%;
+
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrapper {
+  flex: 0 0 50%;
+  width: 50%;
+  display: grid;
+  background-color: gray;
+}
+
+.item {
+  width: 100px;
+  height: 100px;
+  background-color: green;
+  flex: 0 0 auto;
+}
+
+.left-side {
+  align-self: center;
+  justify-self: start;
+}
+
+.right-side {
+  align-self: center;
+  justify-self: end;
+}
+
+.center {
+  align-self: center;
+  justify-self: center;
+}
+
+.top-side {
+  align-self: flex-start;
+  justify-self: center;
+}
+
+.bottom-side {
+  align-self: flex-end;
+  justify-self: center;
+}

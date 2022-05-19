@@ -1,27 +1,77 @@
-# App
+# ngclass vs class-binding
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.1.
 
-## Development server
+How to use `ngclass`?
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+```html
+<div [ngClass]="{
+  class0: condition,
+  classN: condition
+}"></div>
+```
 
-## Code scaffolding
+And how would class-binding looks like?
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```html
+<div [class.class0]="condition"
+     [class.classN]="condition"
+></div>
+```
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Test Scenario
 
-## Running unit tests
+### project structure
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```
+app.component.class.html => contains class-binding version of the template
 
-## Running end-to-end tests
+app.component.ngclass.html => contains ngclass version of the template
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+app.component.css => basic css to provide the demo styles
 
-## Further help
+app.component.ts => align state and callbacks for the buttons to change the alignment
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+index.html => basic resetted index file
+```
+
+
+### Do it yourself
+
+just clone the [repository](https://github.com:SourceCodeBot/angular-class-binding-demo) and execute `npm start`.
+
+on http://localhost:4200 you can direct interact with the current selected version.
+
+
+### Test Plan
+
+1. Open the Devtools
+2. Open the [angular profiler plugin](https://chrome.google.com/webstore/detail/angular-devtools/ienfalfjdbdpebioblfackkekamfmbnh)
+3. switch to "profiler" tab
+4. start recording by click the round button which become red by hover
+5. press 
+   1. top
+   2. bottom
+   3. left
+   4. right
+   5. center
+6. click "safe profile" to export a json with the detail report
+
+
+## my Result
+
+
+| Direction | ngclass | Class-binding |
+| :-------: | :-----: | :-----------: |
+|    top    | 0,4999  |    0,2999     |
+|  bottom   | 0,7000  |    0,4000     |
+|   left    | 0,6000  |    0,4000     |
+|   right   | 0,3999  |    0,3000     |
+|  Center   | 0,4000  |    0,0999     |
+
+
+## recommandation
+
+to avoid complexity in your change detection circle you should probably use class-binding instead of ngclass.
+
+for more complex usecases or if you want to bind a object with the typesignature `Record<string, boolean>` ngclass would be the right way.
